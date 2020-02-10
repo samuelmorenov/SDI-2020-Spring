@@ -10,22 +10,22 @@ public class Professor {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String DNI;
-	private String Name;
-	private String LastName;
-	private String Category;
-	
+	private String dni;
+	private String name;
+	private String lastname;
+	private String category;
+
 	public Professor() {
-		
+
 	}
 
-	public Professor(String dNI, String name, String lastName, String category) {
+	public Professor(Long id, String dni, String name, String lastname, String category) {
 		super();
-
-		DNI = dNI;
-		Name = name;
-		LastName = lastName;
-		Category = category;
+		this.id = id;
+		this.dni = dni;
+		this.name = name;
+		this.lastname = lastname;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -36,41 +36,42 @@ public class Professor {
 		this.id = id;
 	}
 
-	public String getDNI() {
-		return DNI;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return LastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		LastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
-		return "Professor [DNI=" + DNI + ", Name=" + Name + ", LastName=" + LastName + ", Category=" + Category + "]";
+		return "Professor [id=" + id + ", dni=" + dni + ", name=" + name + ", lastname=" + lastname + ", category="
+				+ category + "]";
 	}
 
 }
