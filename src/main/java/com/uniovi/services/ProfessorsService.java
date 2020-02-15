@@ -10,7 +10,7 @@ import com.uniovi.entities.Professor;
 import com.uniovi.repositories.ProfessorRepository;
 
 @Service
-public class ProfessorService {
+public class ProfessorsService {
 
 	@Autowired
 	private ProfessorRepository professorRepository;

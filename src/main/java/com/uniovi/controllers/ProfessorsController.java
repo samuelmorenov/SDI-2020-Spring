@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Professor;
-import com.uniovi.services.ProfessorService;
+import com.uniovi.services.ProfessorsService;
 
 @Controller
 public class ProfessorsController {
 
 	@Autowired // Inyectar el servicio
-	private ProfessorService professorsService;
+	private ProfessorsService professorsService;
 
 	@RequestMapping("/professor/list")
 	public String getList(Model model) {
