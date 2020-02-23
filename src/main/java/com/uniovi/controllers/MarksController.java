@@ -1,14 +1,14 @@
 package com.uniovi.controllers;
 
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,25 +39,29 @@ public class MarksController {
 	@Autowired
 	private AddMarkValidator addMarkValidator;
 
-	@RequestMapping("/mark/list/update")
-	public String updateList(Model model, Principal principal) {
+	@RequestMapping("/mark/list")
+	public String getList(Model model, Pageable pageable, Principal principal,
+			@RequestParam(value = "", required = false) String searchText) {
 		String dni = principal.getName(); // DNI es el name de la autenticación
 		User user = usersService.getUserByDni(dni);
-		model.addAttribute("markList", marksService.getMarksForUser(user));
-		return "mark/list :: tableMarks";
+		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
+		if (searchText != null && !searchText.isEmpty()) {
+			marks = marksService.searchMarksByDescriptionAndNameForUser(pageable, searchText, user);
+		} else {
+			marks = marksService.getMarksForUser(pageable, user);
+		}
+		model.addAttribute("markList", marks.getContent());
+		model.addAttribute("page", marks);
+		return "mark/list";
 	}
 
-	@RequestMapping("/mark/list")
-	public String getList(Model model, Principal principal,
-			@RequestParam(value = "", required = false) String searchText) {
-		String dni = principal.getName();
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model, Pageable pageable, Principal principal) {
+		String dni = principal.getName(); // DNI es el name de la autenticación
 		User user = usersService.getUserByDni(dni);
-		if (searchText != null && !searchText.isEmpty()) {
-			model.addAttribute("markList", marksService.searchMarksByDescriptionAndNameForUser(searchText, user));
-		} else {
-			model.addAttribute("markList", marksService.getMarksForUser(user));
-		}
-		return "mark/list";
+		Page<Mark> marks = marksService.getMarksForUser(pageable, user);
+		model.addAttribute("markList", marks.getContent());
+		return "mark/list :: tableMarks";
 	}
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
