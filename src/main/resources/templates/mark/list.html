@@ -11,6 +11,14 @@
 	<div class="container">
 		<h2>Notas</h2>
 
+		<form class="navbar-form" action="/mark/list">
+			<div class="form-group">
+				<input name="searchText" type="text" class="form-control" size="50"
+					placeholder="Buscar por descripción o nombre del alumno">
+			</div>
+			<button type="submit" class="btn btn-default">Buscar</button>
+		</form>
+
 		<!-- 
 		<p>Notas consultadas recientemente por el usuario:</p>
 		<div class="table-responsive">
@@ -74,22 +82,40 @@
 									<button type="button" th:id="${'resendButton' + mark.id}"
 										class="btn btn-info">Reenviar</button>
 									<script th:inline="javascript">
-										$("#resendButton[[${mark.id}]]").click(function() {
-											$.get("/mark/[[${mark.id}]]/noresend",function(data) {
-												$("#tableMarks").load('/mark/list/update');
-												});
-											});
+										$("#resendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/noresend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
 									</script>
 								</div>
 								<div th:unless="${mark.resend}">
 									<button type="button" th:id="${'noresendButton' + mark.id}"
 										class="btn btn-default">No reenviar</button>
 									<script th:inline="javascript">
-										$("#noresendButton[[${mark.id}]]").click(function() {
-											$.get("/mark/[[${mark.id}]]/resend",function(data) {
-												$("#tableMarks").load('/mark/list/update');
-												});
-											});
+										$("#noresendButton[[${mark.id}]]")
+												.click(
+														function() {
+															$
+																	.get(
+																			"/mark/[[${mark.id}]]/resend",
+																			function(
+																					data) {
+																				$(
+																						"#tableMarks")
+																						.load(
+																								'/mark/list/update');
+																			});
+														});
 									</script>
 								</div>
 							</div></td>
