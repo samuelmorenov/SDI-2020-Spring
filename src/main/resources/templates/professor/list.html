@@ -30,9 +30,9 @@
 						<td th:text="${professor.lastname}">Ejercicio 1</td>
 						<td th:text="${professor.category}">Ejercicio 1</td>
 
-						<td><a th:href="${'/professor/details/' + professor.id}">detalles</a></td>
-						<td><a th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
-						<td><a th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
+						<td><a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_PROFESSOR')" th:href="${'/professor/details/' + professor.id}">detalles</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/professor/edit/' + professor.id}">modificar</a></td>
+						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/professor/delete/' + professor.id}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
