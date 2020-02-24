@@ -1,6 +1,12 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+import java.util.LinkedList;
+
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.uniovi.entities.*;
+import com.uniovi.services.MarksService;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
@@ -24,6 +31,9 @@ public class UsersController {
 
 	@Autowired
 	private SecurityService securityService;
+	
+	@Autowired
+	private MarksService marksService;
 
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
@@ -96,11 +106,15 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, Principal principal) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String dni = auth.getName();
 		User activeUser = usersService.getUserByDni(dni);
+		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
 		model.addAttribute("markList", activeUser.getMarks());
+		model.addAttribute("page", marks);
 		return "home";
 	}
+	
+
 }

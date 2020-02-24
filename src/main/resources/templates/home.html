@@ -10,7 +10,10 @@
 		<div th:text="#{home.user}">Usuario Autenticado como :</div>
 		<span sec:authentication="principal.username" th:inline="text"></span>
 		</p>
+		<p>Notas del Usuario:</p>
+		<div th:replace="fragments/list" />
 	</div>
+	
 	<footer th:replace="fragments/footer" />
 </body>
 </html>
