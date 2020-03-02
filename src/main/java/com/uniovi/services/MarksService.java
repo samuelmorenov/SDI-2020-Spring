@@ -40,6 +40,7 @@ public class MarksService {
 		return marks;
 	}
 
+	@SuppressWarnings("unchecked")
 	public Mark getMark(Long id) {
 		Set<Mark> consultedList = (Set<Mark>) httpSession.getAttribute("consultedList");
 		if (consultedList == null) {

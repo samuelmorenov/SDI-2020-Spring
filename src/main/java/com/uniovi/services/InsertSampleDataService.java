@@ -49,7 +49,12 @@ public class InsertSampleDataService {
 			
 		
 
-		Set user1Marks = new HashSet<Mark>() {
+		Set<Mark> user1Marks = new HashSet<Mark>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Mark("Nota A1", 10.0, user1));
 				add(new Mark("Nota A2", 9.0, user1));
@@ -58,7 +63,12 @@ public class InsertSampleDataService {
 			}
 		};
 		user1.setMarks(user1Marks);
-		Set user2Marks = new HashSet<Mark>() {
+		Set<Mark> user2Marks = new HashSet<Mark>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Mark("Nota B1", 5.0, user2));
 				add(new Mark("Nota B2", 4.3, user2));
@@ -67,7 +77,12 @@ public class InsertSampleDataService {
 			}
 		};
 		user2.setMarks(user2Marks);
-		Set user3Marks = new HashSet<Mark>() {
+		Set<Mark> user3Marks = new HashSet<Mark>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				;
 				add(new Mark("Nota C1", 5.5, user3));
@@ -76,7 +91,12 @@ public class InsertSampleDataService {
 			}
 		};
 		user3.setMarks(user3Marks);
-		Set user4Marks = new HashSet<Mark>() {
+		Set<Mark> user4Marks = new HashSet<Mark>() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				add(new Mark("Nota D1", 10.0, user4));
 				add(new Mark("Nota D2", 8.0, user4));

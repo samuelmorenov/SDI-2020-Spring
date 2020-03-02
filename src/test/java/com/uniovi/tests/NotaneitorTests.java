@@ -29,8 +29,8 @@ import com.uniovi.tests.util.SeleniumUtils;
 public class NotaneitorTests {
 	// En Windows (Debe ser la versión 65.0.1 y desactivar las actualizacioenes
 	// automáticas):
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\UO266321\\Desktop\\Workspace Spring Boot\\geckodriver024win64.exe";
+	static String PathFirefox65 = Config.getPathFirefox65();
+	static String Geckdriver024 = Config.getGeckdriver024();
 	// Comun:
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
@@ -218,7 +218,7 @@ public class NotaneitorTests {
 		PO_PrivateView.login(driver, "99999993D", "123456", "99999993D");
 
 		List<WebElement> elementos = null;
-		
+
 		PO_PrivateView.accederPagina(driver, "marks-menu", "mark/add", elementos);
 
 		// Ahora vamos a rellenar la nota. //option[contains(@value, '4')]
@@ -242,8 +242,8 @@ public class NotaneitorTests {
 
 		PO_PrivateView.login(driver, "99999993D", "123456", "99999993D");
 
-		List<WebElement> elementos = null; 
-		
+		List<WebElement> elementos = null;
+
 		PO_PrivateView.accederPagina(driver, "marks-menu", "mark/list", elementos);
 
 		// Esperamos a que se muestren los enlaces de paginacion la lista de notas
