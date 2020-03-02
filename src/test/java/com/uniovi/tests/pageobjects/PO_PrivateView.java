@@ -1,5 +1,7 @@
 package com.uniovi.tests.pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,5 +25,25 @@ public class PO_PrivateView extends PO_NavView {
 		score.sendKeys(scorep);
 		By boton = By.className("btn");
 		driver.findElement(boton).click();
+	}
+
+	static public void login(WebDriver driver, String dnip, String passwordp, String text) {
+
+		// Vamos al formulario de logueo.
+		PO_HomeView.clickOption(driver, "login", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_LoginView.fillForm(driver, dnip, passwordp);
+		// COmprobamos que entramos en la pagina privada del Profesor
+		PO_View.checkElement(driver, "text", text);
+
+	}
+
+	static public void accederPagina(WebDriver driver, String lista, String elemento, List<WebElement> elementos) {
+		// Pinchamos en la opción de menu de Notas: //li[contains(@id, 'marks-menu')]/a
+		elementos = PO_View.checkElement(driver, "free", "//li[contains(@id, '" + lista + "')]/a");
+		elementos.get(0).click();
+		// Pinchamos en la opción de lista de notas.
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href,'" + elemento + "')]");
+		elementos.get(0).click();
 	}
 }
