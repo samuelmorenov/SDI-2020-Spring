@@ -1,6 +1,6 @@
 # [SDI]  Sistemas Distribuidos e Internet
 
-## Introducción a JEE – Servlets y JSPs
+## Spring Boot
 
 *Escuela de Ingeniería Informática - Uniovi*
 
